@@ -2,39 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/darker_gray">
 
     <LinearLayout
-        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_ą"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/key_ą" />
+            android:background="#BC3232"
+            android:text="@string/key_ą"
+            style="@style/AppTextAppearance.Button"/>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_č"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_č" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_ę"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_ę" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_ė"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
@@ -42,7 +45,7 @@
             android:layout_weight="1"
             android:text="@string/key_ė" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_į"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
@@ -50,9 +53,10 @@
             android:layout_weight="1"
             android:minWidth="48dp"
             android:minHeight="48dp"
+            android:background="#BC3232"
             android:text="@string/key_į" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_š"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
@@ -60,72 +64,79 @@
             android:layout_weight="1"
             android:minWidth="48dp"
             android:minHeight="48dp"
+            android:background="#BC3232"
             android:text="@string/key_š" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_ų"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_ų" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_ū"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_ū" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_ž"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_ž" />
     </LinearLayout>
 
     <LinearLayout
-        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_q"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_q" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_w"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_w" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_e"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_e" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_r"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_r" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_t"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
@@ -133,9 +144,10 @@
             android:layout_weight="1"
             android:minWidth="48dp"
             android:minHeight="48dp"
+            android:background="#BC3232"
             android:text="@string/key_t" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_y"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
@@ -143,211 +155,232 @@
             android:layout_weight="1"
             android:minWidth="48dp"
             android:minHeight="48dp"
+            android:background="#BC3232"
             android:text="@string/key_y" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_u"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_u" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_i"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_i" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_o"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_o" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_p"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_p" />
     </LinearLayout>
 
     <LinearLayout
-        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_a"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_a" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_s"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_s" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_d"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_d" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_f"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_f" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_g"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_g" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_h"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_h" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_j"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_j" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_k"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_k" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_l"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_l" />
     </LinearLayout>
 
     <LinearLayout
-        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_z"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_z" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_x"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_x" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_c"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_c" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_v"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_v" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_b"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_b" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_n"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_n" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_m"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_m" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_delete"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#BC3232"
             android:text="@string/key_delete" />
     </LinearLayout>
 
     <LinearLayout
-        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_space"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="46dp"
             android:layout_height="wrap_content"
             android:layout_weight="7"
+            android:background="#BC3232"
             android:text="@string/key_space" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/key_enter"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:background="#BC3232"
             android:text="@string/key_enter" />
     </LinearLayout>
 </LinearLayout>

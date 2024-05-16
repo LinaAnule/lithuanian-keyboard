@@ -16,32 +16,22 @@ import com.example.lithuaniankeyboard.ui.theme.LithuanianKeyboardTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            LithuanianKeyboardTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                            name = "Android",
-                            modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
+        setContentView(R.layout.activity_main)
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
+    @Composable
+    fun Greeting(name: String, modifier: Modifier = Modifier) {
+        Text(
             text = "Hello $name!",
             modifier = modifier
-    )
-}
+        )
+    }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LithuanianKeyboardTheme {
-        Greeting("Android")
+    @Preview(showBackground = true)
+    @Composable
+    fun GreetingPreview() {
+        LithuanianKeyboardTheme {
+            Greeting("Android")
+        }
     }
 }
