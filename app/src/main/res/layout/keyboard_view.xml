@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/darker_gray"
+    android:layout_height="300dp"
+    android:background="#000000"
     android:orientation="vertical">
 
     <LinearLayout
@@ -217,19 +217,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
+        <Button
+            android:id="@+id/key_comma"
+            style="@style/ButtonStyle"
+            android:text="@string/key_comma" />
         <Button
             android:id="@+id/key_space"
             style="@style/ButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="7"
+            android:layout_weight="3"
             android:text="@string/key_space" />
+        <Button
+            android:id="@+id/key_dot"
+            style="@style/ButtonStyle"
+            android:text="@string/key_dot" />
 
         <Button
             android:id="@+id/key_enter"
             style="@style/ButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="3"
             android:text="@string/key_enter" />
     </LinearLayout>
 </LinearLayout>
