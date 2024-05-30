@@ -116,10 +116,10 @@ class KeyboardService : InputMethodService() {
 
     private fun updateShiftKey() {
         val shiftButton = keyboardView?.findViewById<Button>(R.id.key_shift)
-        shiftButton?.text = when {
-            isCapsLock -> "⇧⇧"
-            isShifted -> "⇧"
-            else -> "⇧"
+        if (shiftButton != null) {
+            shiftButton.isActivated = isCapsLock
+            shiftButton.isSelected = isShifted
+            // Optionally, you can call shiftButton.refreshDrawableState() if needed
         }
     }
 

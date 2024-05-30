@@ -174,10 +174,10 @@
 
         <Button
             android:id="@+id/key_shift"
-            style="@style/ButtonStyle"
+            style="@style/ShiftButtonStyle"
             android:layout_weight="1.5"
-            android:background="#000000"
-            android:text="@string/key_shift" />
+            android:background="@drawable/shift_key_selector"
+            />
 
         <Button
             android:id="@+id/key_z"
@@ -217,8 +217,8 @@
         <Button
             android:id="@+id/key_delete"
             style="@style/ButtonStyle"
-            android:background="#000000"
             android:layout_weight="1.5"
+            android:background="#000000"
             android:text="@string/key_delete" />
     </LinearLayout>
 
