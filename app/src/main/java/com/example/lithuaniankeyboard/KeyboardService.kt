@@ -56,7 +56,9 @@ class KeyboardService : InputMethodService() {
             R.id.key_n,
             R.id.key_m,
             R.id.key_delete,
+            R.id.key_comma,
             R.id.key_space,
+            R.id.key_dot,
             R.id.key_enter
         )
 
@@ -117,7 +119,7 @@ class KeyboardService : InputMethodService() {
         shiftButton?.text = when {
             isCapsLock -> "⇧⇧"
             isShifted -> "⇧"
-            else -> "⇩"
+            else -> "⇧"
         }
     }
 

@@ -8,6 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -115,6 +117,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -171,7 +175,10 @@
         <Button
             android:id="@+id/key_shift"
             style="@style/ButtonStyle"
+            android:layout_weight="1.5"
+            android:background="#000000"
             android:text="@string/key_shift" />
+
         <Button
             android:id="@+id/key_z"
             style="@style/ButtonStyle"
@@ -210,6 +217,8 @@
         <Button
             android:id="@+id/key_delete"
             style="@style/ButtonStyle"
+            android:background="#000000"
+            android:layout_weight="1.5"
             android:text="@string/key_delete" />
     </LinearLayout>
 
@@ -217,15 +226,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/key_comma"
             style="@style/ButtonStyle"
             android:text="@string/key_comma" />
+
         <Button
             android:id="@+id/key_space"
             style="@style/ButtonStyle"
             android:layout_weight="3"
             android:text="@string/key_space" />
+
         <Button
             android:id="@+id/key_dot"
             style="@style/ButtonStyle"
@@ -234,6 +246,7 @@
         <Button
             android:id="@+id/key_enter"
             style="@style/ButtonStyle"
+            android:background="#000000"
             android:text="@string/key_enter" />
     </LinearLayout>
 </LinearLayout>
