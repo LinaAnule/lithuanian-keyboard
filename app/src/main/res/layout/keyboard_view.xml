@@ -169,6 +169,10 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/key_shift"
+            style="@style/ButtonStyle"
+            android:text="@string/key_shift" />
+        <Button
             android:id="@+id/key_z"
             style="@style/ButtonStyle"
             android:text="@string/key_z" />
