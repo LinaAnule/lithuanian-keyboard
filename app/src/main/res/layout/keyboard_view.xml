@@ -218,7 +218,7 @@
             android:id="@+id/key_delete"
             style="@style/ButtonStyle"
             android:layout_weight="1.5"
-            android:background="#000000"
+            android:background="@drawable/ic_delete_key"
             android:text="@string/key_delete" />
     </LinearLayout>
 
@@ -246,7 +246,7 @@
         <Button
             android:id="@+id/key_enter"
             style="@style/ButtonStyle"
-            android:background="#000000"
+            android:background="@drawable/ic_enter_key"
             android:text="@string/key_enter" />
     </LinearLayout>
 </LinearLayout>

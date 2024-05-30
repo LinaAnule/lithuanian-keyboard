@@ -35,10 +35,10 @@
     <string name="key_b">b</string>
     <string name="key_n">n</string>
     <string name="key_m">m</string>
-    <string name="key_delete">⌫</string>
-    <string name="key_space">Space</string>
-    <string name="key_enter">⏎</string>
-    <string name="key_shift">⇧</string>
+    <string name="key_delete"> </string>
+    <string name="key_space"> </string>
+    <string name="key_enter"> </string>
+    <string name="key_shift"> </string>
     <string name="key_dot">.</string>
     <string name="key_comma">,</string>
     <string name="welcome_to_lithuanian_keyboard">Welcome to Lithuanian Keyboard</string>

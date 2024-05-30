@@ -119,7 +119,6 @@ class KeyboardService : InputMethodService() {
         if (shiftButton != null) {
             shiftButton.isActivated = isCapsLock
             shiftButton.isSelected = isShifted
-            // Optionally, you can call shiftButton.refreshDrawableState() if needed
         }
     }
 
