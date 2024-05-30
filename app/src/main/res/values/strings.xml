@@ -41,5 +41,9 @@
     <string name="key_shift"> </string>
     <string name="key_dot">.</string>
     <string name="key_comma">,</string>
+    <string name="key_symbols">123</string>
+    <string name="key_question">?</string>
+    <string name="key_exclamation">!</string>
+
     <string name="welcome_to_lithuanian_keyboard">Welcome to Lithuanian Keyboard</string>
 </resources>

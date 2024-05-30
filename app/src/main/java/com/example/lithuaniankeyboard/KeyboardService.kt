@@ -1,14 +1,20 @@
 package com.example.lithuaniankeyboard
 
 import android.inputmethodservice.InputMethodService
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.PopupMenu
+import android.widget.PopupWindow
 
 class KeyboardService : InputMethodService() {
     private var isShifted = false
     private var isCapsLock = false
     private var keyboardView: View? = null
+    private var popupWindow: PopupWindow? = null
 
     override fun onCreateInputView(): View {
         keyboardView = layoutInflater.inflate(R.layout.keyboard_view, null)
@@ -65,8 +71,44 @@ class KeyboardService : InputMethodService() {
         keys.forEach { keyId ->
             val key = keyboardView.findViewById<Button>(keyId)
             key.setOnClickListener { onKeyPress(key) }
+            if (keyId == R.id.key_dot) {
+                key.setOnLongClickListener {
+                    showPopupWindow(key)
+                    true
+                }
+            }
         }
     }
+    private fun showPopupWindow(view: View) {
+        val inflater = LayoutInflater.from(this)
+        val popupView = inflater.inflate(R.layout.popup_symbols, null)
+
+        popupWindow = PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true)
+
+        popupView.findViewById<Button>(R.id.symbol_question).setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                handleSymbolSelection("?")
+                popupWindow?.dismiss()
+            }
+            true
+        }
+
+        popupView.findViewById<Button>(R.id.symbol_exclamation).setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                handleSymbolSelection("!")
+                popupWindow?.dismiss()
+            }
+            true
+        }
+
+        popupWindow?.showAsDropDown(view, 0, -view.height)
+    }
+
+    private fun handleSymbolSelection(symbol: String) {
+        val ic = currentInputConnection
+        ic.commitText(symbol, 1)
+    }
+
 
     private fun onKeyPress(key: Button) {
         val ic = currentInputConnection
