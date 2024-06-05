@@ -1,6 +1,9 @@
 package com.example.lithuaniankeyboard
 
+import android.annotation.SuppressLint
 import android.inputmethodservice.InputMethodService
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -15,6 +18,16 @@ class KeyboardService : InputMethodService() {
     private var isCapsLock = false
     private var keyboardView: View? = null
     private var popupWindow: PopupWindow? = null
+    private val handler = Handler(Looper.getMainLooper())
+    private var isDeleting = false
+
+    private val deleteRunnable = object : Runnable {
+        override fun run() {
+            val ic = currentInputConnection
+            ic.deleteSurroundingText(1, 0)
+            handler.postDelayed(this, 100) // Adjust the delay for desired speed
+        }
+    }
 
     override fun onCreateInputView(): View {
         keyboardView = layoutInflater.inflate(R.layout.keyboard_view, null)
@@ -22,6 +35,7 @@ class KeyboardService : InputMethodService() {
         return keyboardView!!
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupKeyboard(keyboardView: View) {
 
         val keys = listOf(
@@ -76,14 +90,37 @@ class KeyboardService : InputMethodService() {
                     showPopupWindow(key)
                     true
                 }
+            } else if (keyId == R.id.key_delete) {
+                key.setOnLongClickListener {
+                    isDeleting = true
+                    handler.post(deleteRunnable)
+                    true
+                }
+                key.setOnTouchListener { _, event ->
+                    when (event.action) {
+                        MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                            if (isDeleting) {
+                                handler.removeCallbacks(deleteRunnable)
+                                isDeleting = false
+                            }
+                        }
+                    }
+                    false
+                }
             }
         }
     }
+
     private fun showPopupWindow(view: View) {
         val inflater = LayoutInflater.from(this)
         val popupView = inflater.inflate(R.layout.popup_symbols, null)
 
-        popupWindow = PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true)
+        popupWindow = PopupWindow(
+            popupView,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            true
+        )
 
         popupView.findViewById<Button>(R.id.symbol_question).setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
