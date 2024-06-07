@@ -1,17 +1,26 @@
 package com.example.lithuaniankeyboard
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.inputmethodservice.InputMethodService
 import android.os.Handler
 import android.os.Looper
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewConfiguration
+import android.view.ViewGroup
+import android.view.WindowId
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.PopupWindow
+import android.widget.TextView
+import androidx.core.content.contentValuesOf
 
 class KeyboardService : InputMethodService() {
     private var isShifted = false
@@ -20,6 +29,7 @@ class KeyboardService : InputMethodService() {
     private var popupWindow: PopupWindow? = null
     private val handler = Handler(Looper.getMainLooper())
     private var isDeleting = false
+    private var isLongPressed = false
 
     private val deleteRunnable = object : Runnable {
         override fun run() {
@@ -85,9 +95,34 @@ class KeyboardService : InputMethodService() {
         keys.forEach { keyId ->
             val key = keyboardView.findViewById<Button>(keyId)
             key.setOnClickListener { onKeyPress(key) }
+
             if (keyId == R.id.key_dot) {
-                key.setOnLongClickListener {
-                    showPopupWindow(key)
+                var longPressHandler: Handler? = null
+                var longPressRunnable: Runnable? = null
+
+                key.setOnTouchListener { v, event ->
+                    when (event.action) {
+                        MotionEvent.ACTION_DOWN -> {
+                            isLongPressed = false
+                            longPressHandler = Handler(Looper.getMainLooper())
+                            longPressRunnable = Runnable {
+                                showPopupWindow(key)
+                                isLongPressed = true
+                            }
+                            longPressHandler?.postDelayed(
+                                longPressRunnable!!,
+                                ViewConfiguration.getLongPressTimeout().toLong()
+                            )
+                        }
+
+                        MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                            longPressHandler?.removeCallbacks(longPressRunnable!!)
+                            if (!isLongPressed) {
+                                onKeyPress(v as Button)
+                            }
+                            isLongPressed = false
+                        }
+                    }
                     true
                 }
             } else if (keyId == R.id.key_delete) {
@@ -111,34 +146,44 @@ class KeyboardService : InputMethodService() {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun showPopupWindow(view: View) {
-        val inflater = LayoutInflater.from(this)
-        val popupView = inflater.inflate(R.layout.popup_symbols, null)
+        // Inflate your custom layout
+        val customView: View = LayoutInflater.from(view.context)
+            .inflate(R.layout.popup_symbols, FrameLayout(view.context))
 
-        popupWindow = PopupWindow(
-            popupView,
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            true
-        )
+        // Create a PopupWindow instance
+        val popupWindow = PopupWindow(view.context)
+        popupWindow.contentView = customView
 
-        popupView.findViewById<Button>(R.id.symbol_question).setOnTouchListener { _, event ->
+        // Set the width and height of the PopupWindow
+        popupWindow.width = ViewGroup.LayoutParams.WRAP_CONTENT
+        popupWindow.height = ViewGroup.LayoutParams.WRAP_CONTENT
+
+        // Optional: Set background drawable to dismiss when touching outside
+        popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        popupWindow.isOutsideTouchable = true
+        popupWindow.isFocusable = true
+
+        // Show the PopupWindow below the anchor view
+        popupWindow.showAsDropDown(view, 0, -view.height)
+
+        // Set onTouchListeners for the buttons in the popup
+        customView.findViewById<Button>(R.id.symbol_question).setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 handleSymbolSelection("?")
-                popupWindow?.dismiss()
+                popupWindow.dismiss()
             }
             true
         }
 
-        popupView.findViewById<Button>(R.id.symbol_exclamation).setOnTouchListener { _, event ->
+        customView.findViewById<Button>(R.id.symbol_exclamation).setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 handleSymbolSelection("!")
-                popupWindow?.dismiss()
+                popupWindow.dismiss()
             }
             true
         }
-
-        popupWindow?.showAsDropDown(view, 0, -view.height)
     }
 
     private fun handleSymbolSelection(symbol: String) {
@@ -149,6 +194,10 @@ class KeyboardService : InputMethodService() {
 
     private fun onKeyPress(key: Button) {
         val ic = currentInputConnection
+
+        // Show key preview popup
+        showKeyPreview(key)
+
         when (key.id) {
             R.id.key_delete -> ic.deleteSurroundingText(1, 0)
             R.id.key_enter -> ic.sendKeyEvent(
@@ -157,10 +206,8 @@ class KeyboardService : InputMethodService() {
                     android.view.KeyEvent.KEYCODE_ENTER
                 )
             )
-
             R.id.key_space -> ic.commitText(" ", 1)
             R.id.key_shift -> toggleShift()
-
             else -> {
                 var text = key.text.toString()
                 if (isShifted || isCapsLock) {
@@ -168,11 +215,36 @@ class KeyboardService : InputMethodService() {
                 }
                 ic.commitText(text, 1)
                 if (isShifted && !isCapsLock) {
-                    isShifted = false;
-                    updateKeyCaps() // turn off shift after one key press
+                    isShifted = false
+                    updateKeyCaps()
                 }
             }
         }
+
+        // Hide key preview popup after a delay
+        key.postDelayed({ hideKeyPreview() }, 500)
+    }
+
+    private fun showKeyPreview(key: Button) {
+        val inflater = LayoutInflater.from(key.context)
+        val view = inflater.inflate(R.layout.popup_key_preview, null)
+        val textView = view.findViewById<TextView>(R.id.popup_text)
+        textView.text = key.text
+
+        popupWindow = PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        popupWindow?.isFocusable = false
+        popupWindow?.isOutsideTouchable = false
+
+        val location = IntArray(2)
+        key.getLocationInWindow(location)
+        val x = location[0] + view.measuredWidth / 4
+        val y = location[1] - view.measuredHeight- key.height / 2 - 40
+
+        popupWindow?.showAtLocation(key.rootView, Gravity.NO_GRAVITY, x, y)
+    }
+
+    private fun hideKeyPreview() {
+        popupWindow?.dismiss()
     }
 
     private fun toggleShift() {
@@ -251,4 +323,7 @@ class KeyboardService : InputMethodService() {
             }
         }
     }
+
+
+
 }
